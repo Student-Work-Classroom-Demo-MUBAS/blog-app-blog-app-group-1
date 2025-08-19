@@ -1,0 +1,25 @@
+{
+  "name": "blog-app-blog-app-group-1",
+  "version": "1.0.0",
+  "description": "[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/76R_R9bl)\r # blog-app\r blog-app",
+  "main": "Server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Student-Work-Classroom-Demo-MUBAS/blog-app-blog-app-group-1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Student-Work-Classroom-Demo-MUBAS/blog-app-blog-app-group-1/issues"
+  },
+  "homepage": "https://github.com/Student-Work-Classroom-Demo-MUBAS/blog-app-blog-app-group-1#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "lodash": "^4.17.21"
+  }
+}
