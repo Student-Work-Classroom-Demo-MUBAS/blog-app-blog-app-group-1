@@ -18,8 +18,19 @@
   },
   "homepage": "https://github.com/Student-Work-Classroom-Demo-MUBAS/blog-app-blog-app-group-1#readme",
   "dependencies": {
+<<<<<<< Updated upstream
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "lodash": "^4.17.21"
   }
+=======
+    "body-parser": "^2.2.0",
+    "dotenv": "^17.2.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "lodash": "^4.17.21",
+    "mongodb": "^6.18.0"
+  },
+  "keywords": []
+>>>>>>> Stashed changes
 }
