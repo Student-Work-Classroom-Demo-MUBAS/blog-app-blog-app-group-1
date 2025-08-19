@@ -13,10 +13,8 @@ const Server = http.createServer((req, res) => {
             res.end();
         }else{
             //res.write(data);
-
             res.end(data);
         }
-
         console.log("Response sent.");
     });
 });
