@@ -37,7 +37,7 @@ body {
 header {
     background: linear-gradient(to right, var(--dark-green), var(--primary-green));
     color: var(--white);
-    padding: 1.5rem 0;
+    padding: 20px 0;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -313,7 +313,7 @@ main {
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 0.9rem;
+    padding: 14px 12px;
     border: 1px solid #ddd;
     border-radius: 6px;
     font-family: inherit;
