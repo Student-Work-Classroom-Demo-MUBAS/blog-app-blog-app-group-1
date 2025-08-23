@@ -347,7 +347,7 @@ main {
     transition: all 0.3s;
     border: none;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 14px;
 }
 
 .btn.primary {
@@ -439,7 +439,7 @@ footer {
     background: linear-gradient(to right, var(--dark-green), var(--primary-green));
     color: var(--white);
     text-align: center;
-    padding: 2.5rem 0;
+    padding: 2rem 0.5rem;
     margin-top: 3rem;
 }
 
