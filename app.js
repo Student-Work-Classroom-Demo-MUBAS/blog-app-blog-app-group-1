@@ -6,7 +6,6 @@ const fs = require('fs');
 // const { title } = require('process');
 const port = process.env.PORT || 3000;
 
-
 // Set EJS as the view engine and set views directory
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -17,10 +16,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Debug logging middleware
 app.use((req, res, next) => {
   if (req.url.startsWith('/css') || req.url.startsWith('/js') || req.url.startsWith('/images')) {
-    console.log(`Static file request: ${req.method} ${req.url}`);
+    console.log('Static file request:', req.url, '-', res.statusCode);
   } 
   next();
 });
+
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 
 const blogData = {
   "Lake-Malawi": {
@@ -97,8 +99,28 @@ const blogData = {
 }
 
 app.get('/', (req, res) => {
-  res.render('pages/index', {blogData});
+  res.render('index', {
+    post: posts.sort((a, b) => b.createdAt - a.createdAt),
+    title: 'Malawi Tourism Blog - Discover the Beauty of Malawi',
+  });
 });
+
+//redirect 
+app.get('/create', (req, res) => {
+  res.redirect('/posts/new');
+});
+
+//view single post
+app.get('/posts/:id', (req, res) => {
+  const post = posts.find (p => p.id ===parseInt(req.params.id));
+  if (!post) {
+    return res.status(404).render('404 error', { 
+      message: 'Post not found',
+      title: 'Post Not Found' });
+  }
+});
+
+//create
 
 app.get('/about', (req, res) => {
   res.render('pages/about');
@@ -107,6 +129,7 @@ app.get('/about', (req, res) => {
 app.get('/contact', (req, res) => {
   res.render('pages/contact');
 });
+
 
 // API endpont to get blog data
 app.get('api/blog', (req, res) => {
