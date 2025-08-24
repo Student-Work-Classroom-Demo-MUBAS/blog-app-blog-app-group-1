@@ -40,6 +40,7 @@ textareas.forEach(textarea => {
         textarea.style.height = 'auto';
         textarea.style.height = `${textarea.scrollHeight}px`;
     });
+    
     // Trigger input event to set initial height
     textarea.dispatchEvent(new Event('input'));
 });
