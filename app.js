@@ -47,5 +47,30 @@ const blogData = {
       <p>Today, visitors to Nyika can enjoy game drives, hiking, mountain biking, and horse riding safaris. The park's remote location and unique high-altitude ecosystem offer a wilderness experience unlike any other in Africa.</p>
     `
   },
+    "Liwonde-park": {
+    title: "Liwonde National Park",
+    image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    content: `
+        <p>Liwonde National Park, located in southern Malawi along the upper Shire River, is one of the country's premier wildlife destinations. Established in 1973, the park covers 548 square kilometers of diverse habitats including floodplains, woodlands, and lagoons.</p>
+        <p>The park is best known for its large populations of elephants and hippos, which can often be seen along the riverbanks. Other wildlife includes crocodiles, antelope species such as kudu and waterbuck, and over 400 species of birds.</p>
+        <p>In recent years, Liwonde has been the focus of major conservation efforts. In 2015, African Parks assumed management of the reserve and initiated an ambitious program to restore wildlife populations. This included the reintroduction of cheetahs in 2017 and lions in 2018, making Liwonde the only park in Malawi where visitors can see all of Africa's "Big Five" (except rhino).</p>
+        <p>The Shire River, which flows along the western boundary of the park, is its lifeblood. Boat safaris along the river offer excellent opportunities to view wildlife, particularly hippos and crocodiles. The river is also home to rare and endangered species such as the African skimmer and Nile monitor lizard.</p>
+        <p>Local communities have lived around the park for generations, and conservation efforts now include community outreach programs to ensure that local people benefit from tourism and conservation. These initiatives have helped reduce human-wildlife conflict and poaching.</p>
+        <p>Today, visitors to Liwonde can enjoy game drives, boat safaris, and walking safaris, with accommodation options ranging from luxury lodges to basic campsites. The park's accessibility from Blantyre and its diverse wildlife make it one of Malawi's most popular tourist destinations.</p>
+    `
+  },
+    "Zomba-plateau": {
+    title: "Zomba Plateau",
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    content: `
+        <p>Zomba Plateau is a striking granite massif that rises dramatically to about 1,800 meters (6,000 feet) above the city of Zomba, the former colonial capital of Malawi. The plateau covers an area of approximately 130 square kilometers and offers some of the most breathtaking views in the country.</p>
+        <p>The plateau was formed about 130 million years ago during the breakup of Gondwana, the ancient supercontinent. Over millennia, erosion has sculpted the granite into its current form, with dramatic cliffs, rocky outcrops, and deep valleys.</p>
+        <p>Zomba's elevation creates a cool, moist climate that supports diverse vegetation, including evergreen forests, pine plantations, grasslands, and patches of heather. The plateau is home to various antelope species, monkeys, and over 100 species of birds.</p>
+        <p>The plateau has several streams and rivers that originate from its heights, including the Mulunguzi, Domasi, and Likangala rivers. These water sources feed the surrounding agricultural lands and provide drinking water for the city below.</p>
+        <p>During the colonial era, Zomba was developed as a hill station where British officials could escape the heat of the lowlands. Remnants of this era include the former Governor's residence and various walking trails. The plateau also served as an important site for astronomical observations in the early 20th century.</p>
+        <p>Today, Zomba Plateau is a popular destination for hiking, mountain biking, and horseback riding. Key attractions include Emperor's View, which offers panoramic vistas of Lake Chilwa and the Shire Highlands, and the Chagwa Falls. The plateau's cool climate and scenic beauty make it a refreshing retreat from Malawi's lowland heat.</p>
+    `
+  },
+  
 
 }
