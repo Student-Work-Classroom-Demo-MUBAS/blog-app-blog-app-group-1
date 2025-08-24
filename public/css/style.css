@@ -374,3 +374,11 @@ main {
     background-color: #dc3545;
     color: var(--white);
 }
+
+.btn.danger:hover {
+    background-color: #c82333;
+}
+
+.delete-form {
+    display: inline;
+}
