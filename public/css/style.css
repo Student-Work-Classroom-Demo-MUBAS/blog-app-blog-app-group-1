@@ -335,3 +335,27 @@ main {
     justify-content: center;
     margin-top: 1.5rem;
 }
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn.primary {
+    background-color: var(--primary-green);
+    color: var(--white);
+}
+
+.btn.primary:hover {
+    background-color: var(--dark-green);
+}
