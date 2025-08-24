@@ -3,6 +3,7 @@ const methodOverride = require('method-override');
 const app = express();
 const path = require('path');
 const fs = require('fs');
+const { title } = require('process');
 // const { title } = require('process');
 const port = process.env.PORT || 3000;
 
@@ -151,7 +152,100 @@ if(!title || !image || !content) {
   });
 }
 
+//Edit post
+app.get('/posts/:id/edit', (req, res) => {
+  const post = posts.find (p => p.id ===parseInt(req.params.id));
+  if (!post) {
+    return res.status(404).render('404 error', { 
+      message: 'Post not found',
+      title: 'Post Not Found' });
+  }
+  res.render('edit', {
+    title: 'Edit blog post',
+    post
+  });
+});
 
+//View single blog page
+app.get('/posts/:id', (req, res) => {
+  const post = posts.find (p => p.id ===parseInt(req.params.id));
+  if (!post) {
+    return res.status(404).render('404 error', { 
+      message: 'Post not found',
+      title: 'Post Not Found' });
+  }
+  res.render('post', {
+    title: `${post.title} - Malawi Tourism Blog`,
+    post
+  });
+});
+
+//Edit post
+app.put('/posts/:id', (req, res) => {
+  const{ title, image, content } = req.body;
+  const postIndex = posts.findIndex (p => p.id ===parseInt(req.params.id));
+  if (postIndex === -1) {
+    return res.status(404).render('404 error', { 
+      message: 'Post not found',
+      title: 'Post Not Found' });
+  }
+  
+//Validation
+  if(!title || !image || !content) {
+    return res.status(400).render('edit', {
+      title: 'Edit blog post',
+      error: 'All fields are required',
+      post: { id: req.params.id, title, image, content }
+    });
+  }
+
+  posts[postIndex] = {
+    ...posts[postIndex],
+    title,
+    image,
+    content
+  };
+  res.redirect(`/posts/${req.params.id}`);
+});
+
+//Delete post
+app.delete('/posts/:id', (req, res) => {
+  const postIndex = posts.findIndex (p => p.id ===parseInt(req.params.id));
+  if (postIndex === -1) {
+    return res.status(404).render('404 error', { 
+      message: 'Post not found',
+      title: 'Post Not Found' });
+  }
+
+  posts.splice(postIndex, 1);
+  res.redirect('/');
+});
+
+//Contact and about pages
+app.get('contact', (req, res) => {
+  res.render('pages/contact');
+  title: 'Contact Us - Malawi Tourism Blog'
+});
+
+//process and submit contact form
+app.post('/contact', (req, res) => {
+  const { name, email, message } = req.body;
+  if (!name || !email || !message) {
+    return res.status(400).render('pages/contact', {
+      title: 'Contact Us - Malawi Tourism Blog',
+      error: 'All fields are required',
+      formData: { name, email, message }
+    });
+  }
+});
+
+//Showing success message
+  res.render('pages/contact', {
+    title: 'Contact Us - Malawi Tourism Blog',
+    success: 'Thank you for your message! We will get back to you soon.',
+  });
+
+  
 
 app.get('/about', (req, res) => {
   res.render('pages/about');
