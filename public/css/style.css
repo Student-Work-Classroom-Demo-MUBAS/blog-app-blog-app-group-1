@@ -359,3 +359,18 @@ main {
 .btn.primary:hover {
     background-color: var(--dark-green);
 }
+
+.btn.secondary {
+    background-color: var(--light-brown);
+    color: var(--dark-gray);
+}
+
+.btn.secondary:hover {
+    background-color: var(--primary-brown);
+    color: var(--white);
+}
+
+.btn.danger {
+    background-color: #dc3545;
+    color: var(--white);
+}
