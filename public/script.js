@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-}
+});
 
 // Add fade-in animation to elements
 const animateElements = document.querySelectorAll('.post-card, .full-post, .form-section');
