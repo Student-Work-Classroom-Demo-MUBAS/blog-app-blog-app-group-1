@@ -465,3 +465,6 @@ footer {
 .social-links a:hover {
     color: var(--gold);
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {}
