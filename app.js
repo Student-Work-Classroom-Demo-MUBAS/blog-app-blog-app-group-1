@@ -25,8 +25,9 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
-const posts = {
-  "Lake-Malawi": {
+let posts = [
+   {
+    id: 1,
     title: "Exploring wonders of Lake Malawi",
     image: "images\\Lake-Malawi.jpg",
     content: `
@@ -35,10 +36,11 @@ const posts = {
       <p>For the people of Malawi, the lake is a vital resource providing food, water transport, and tourism opportunities. The lake's clear waters and sandy beaches make it a popular destination for swimming, snorkeling, sailing, and kayaking.</p>
       <p>In 1984, the lake was designated a UNESCO World Heritage Site for its global importance in biodiversity conservation. The Lake Malawi National Park, located at the southern end of the lake, protects various aquatic habitats and hundreds of fish species found nowhere else on Earth.</p>
       <p>Local legend tells that the lake was discovered by the renowned Scottish explorer David Livingstone in 1859, though it had been known to local people for centuries before European arrival. The Yao people called it Nyasa, meaning simply "lake."</p>
-    
-    `
+        `
   },
-    "Mulanje-mountain": {
+
+    {
+      id: 2,
     title: "Mulanje Mountain",
     image: "images\mount-mulanje.jpg",
     content: `
@@ -49,10 +51,11 @@ const posts = {
       <p>Today, Mulanje is a popular destination for hiking and climbing, with several huts maintained by the Malawi Mountain Club providing accommodation for multiday treks. The challenging ascent to Sapitwa Peak offers breathtaking views of the surrounding landscape.</p>
     `
   },
-    "Nyika-plateau": {
-    title: "Nyika Plateau",
-    image: "images\nyika-plateau.jpg",
-    content: `
+    { 
+      id: 3,
+      title: "Nyika Plateau",
+      image: "images\nyika-plateau.jpg",
+      content: `
       <p>Nyika Plateau is a beautiful, high-altitude plateau located in northern Malawi, with a small extension in northeastern Zambia. Most of the plateau lies within Nyika National Park, Malawi's largest national park, covering an area of about 3,200 km².</p>
       <p>The name "Nyika" means "where the water comes from" in the local language, an appropriate name as the plateau is the source of several important rivers. The landscape is characterized by rolling grasslands interspersed with patches of forest, dramatic escarpments, and occasional granite outcrops.</p>
       <p>At elevations between 1,800 and 2,500 meters, Nyika has a cool climate unusual for Africa, with temperatures sometimes dropping below freezing in winter. This unique environment supports flora and fauna not found elsewhere in Malawi, including orchids, proteas, and over 400 species of birds.</p>
@@ -61,7 +64,9 @@ const posts = {
       <p>Today, visitors to Nyika can enjoy game drives, hiking, mountain biking, and horse riding safaris. The park's remote location and unique high-altitude ecosystem offer a wilderness experience unlike any other in Africa.</p>
     `
   },
-    "Liwonde-park": {
+
+  {
+    id: 4,
     title: "Liwonde National Park",
     image: "images\liwonde-park.jpg",
     content: `
@@ -73,7 +78,9 @@ const posts = {
         <p>Today, visitors to Liwonde can enjoy game drives, boat safaris, and walking safaris, with accommodation options ranging from luxury lodges to basic campsites. The park's accessibility from Blantyre and its diverse wildlife make it one of Malawi's most popular tourist destinations.</p>
     `
   },
-    "Zomba-plateau": {
+
+  {
+    id: 5,
     title: "Zomba Plateau",
     image: "images\zomba-mount.jpg",
     content: `
@@ -85,7 +92,9 @@ const posts = {
         <p>Today, Zomba Plateau is a popular destination for hiking, mountain biking, and horseback riding. Key attractions include Emperor's View, which offers panoramic vistas of Lake Chilwa and the Shire Highlands, and the Chagwa Falls. The plateau's cool climate and scenic beauty make it a refreshing retreat from Malawi's lowland heat.</p>
     `
   },
-    "cape-maclear": {
+
+   {
+    id: 6,
     title: "Cape Maclear",
     image: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     content: `  
@@ -97,7 +106,9 @@ const posts = {
         <p>Conservation efforts in the area focus on protecting the lake's unique biodiversity while supporting sustainable tourism that benefits local communities. These initiatives have helped maintain Cape Maclear's status as one of Malawi's premier tourist destinations.</p>
         `
   }
-}
+];
+
+
 
 app.get('/', (req, res) => {
   res.render('index', {
