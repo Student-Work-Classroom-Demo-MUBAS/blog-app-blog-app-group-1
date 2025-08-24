@@ -405,3 +405,13 @@ main {
     max-width: 600px;
     margin: 0 auto;
 }
+
+.error-section h2 {
+    color: var(--primary-brown);
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.error-section p {
+    margin-bottom: 2rem;
+}
