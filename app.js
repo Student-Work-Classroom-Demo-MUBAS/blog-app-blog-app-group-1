@@ -4,6 +4,7 @@ const app = express();
 const path = require('path');
 const fs = require('fs');
 const { title } = require('process');
+const { create } = require('domain');
 // const { title } = require('process');
 const port = process.env.PORT || 3000;
 
@@ -62,7 +63,8 @@ let posts = [
       <p>Large mammals found on the plateau include eland, roan antelope, zebra, leopard, and elephant. The park is particularly known for its high density of leopards, though these elusive cats are rarely seen by visitors.</p>
       <p>The plateau has a rich cultural history, with evidence of human occupation dating back to the Stone Age. During the colonial era, the area was set aside as a forest reserve before being declared a national park in 1965.</p>
       <p>Today, visitors to Nyika can enjoy game drives, hiking, mountain biking, and horse riding safaris. The park's remote location and unique high-altitude ecosystem offer a wilderness experience unlike any other in Africa.</p>
-    `
+    `,
+    createdAt: new Date('2023-10-01')
   },
 
   {
@@ -76,7 +78,8 @@ let posts = [
         <p>The Shire River, which flows along the western boundary of the park, is its lifeblood. Boat safaris along the river offer excellent opportunities to view wildlife, particularly hippos and crocodiles. The river is also home to rare and endangered species such as the African skimmer and Nile monitor lizard.</p>
         <p>Local communities have lived around the park for generations, and conservation efforts now include community outreach programs to ensure that local people benefit from tourism and conservation. These initiatives have helped reduce human-wildlife conflict and poaching.</p>
         <p>Today, visitors to Liwonde can enjoy game drives, boat safaris, and walking safaris, with accommodation options ranging from luxury lodges to basic campsites. The park's accessibility from Blantyre and its diverse wildlife make it one of Malawi's most popular tourist destinations.</p>
-    `
+    `,
+    createdAt: new Date('2022-11-15'),
   },
 
   {
@@ -90,7 +93,8 @@ let posts = [
         <p>The plateau has several streams and rivers that originate from its heights, including the Mulunguzi, Domasi, and Likangala rivers. These water sources feed the surrounding agricultural lands and provide drinking water for the city below.</p>
         <p>During the colonial era, Zomba was developed as a hill station where British officials could escape the heat of the lowlands. Remnants of this era include the former Governor's residence and various walking trails. The plateau also served as an important site for astronomical observations in the early 20th century.</p>
         <p>Today, Zomba Plateau is a popular destination for hiking, mountain biking, and horseback riding. Key attractions include Emperor's View, which offers panoramic vistas of Lake Chilwa and the Shire Highlands, and the Chagwa Falls. The plateau's cool climate and scenic beauty make it a refreshing retreat from Malawi's lowland heat.</p>
-    `
+    `,
+    createdAt: new Date('2023-05-20'),
   },
 
   {
@@ -104,7 +108,8 @@ let posts = [
         <p>Beyond its natural beauty, Cape Maclear has a rich cultural history. The area has been inhabited by the Chewa people for centuries, and traditional fishing methods are still practiced today. The village offers visitors a glimpse into authentic Malawian life alongside tourist facilities.</p>
         <p>Nearby islands, including Thumbi West Island and Domwe Island, provide excellent opportunities for kayaking, hiking, and camping. The area is also known for its spectacular sunsets, which paint the sky and lake in brilliant shades of orange and red.</p>
         <p>Conservation efforts in the area focus on protecting the lake's unique biodiversity while supporting sustainable tourism that benefits local communities. These initiatives have helped maintain Cape Maclear's status as one of Malawi's premier tourist destinations.</p>
-        `
+        `,
+    createdAt: new Date('2023-08-10'),
   }
 ];
 
