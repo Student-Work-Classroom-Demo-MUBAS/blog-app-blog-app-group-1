@@ -1,15 +1,26 @@
 const express = require('express');
+const methodOverride = require('method-override');
+const app = express();
 const path = require('path');
-const { title } = require('process');
-const port = 3000;
+const fs = require('fs');
+// const { title } = require('process');
+const port = process.env.PORT || 3000;
 
 
-// Set EJS as the view engine
+// Set EJS as the view engine and set views directory
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 //Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
+
+//Debug logging middleware
+app.use((req, res, next) => {
+  if (req.url.startsWith('/css') || req.url.startsWith('/js') || req.url.startsWith('/images')) {
+    console.log(`Static file request: ${req.method} ${req.url}`);
+  } 
+  next();
+});
 
 const blogData = {
   "Lake-Malawi": {
