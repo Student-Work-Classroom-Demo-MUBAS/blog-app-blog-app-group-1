@@ -71,6 +71,17 @@ const blogData = {
         <p>Today, Zomba Plateau is a popular destination for hiking, mountain biking, and horseback riding. Key attractions include Emperor's View, which offers panoramic vistas of Lake Chilwa and the Shire Highlands, and the Chagwa Falls. The plateau's cool climate and scenic beauty make it a refreshing retreat from Malawi's lowland heat.</p>
     `
   },
-  
-
+    "cape-maclear": {
+    title: "Cape Maclear",
+    image: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    content: `  
+        <p>Cape Maclear, known locally as Chembe, is a picturesque fishing village located on the southern shore of Lake Malawi within the Lake Malawi National Park. This UNESCO World Heritage Site is renowned for its stunning beaches, crystal-clear waters, and incredible biodiversity.</p>
+        <p>The cape was named after Sir Thomas Maclear, Astronomer Royal at the Cape of Good Hope and friend of David Livingstone, who visited the area in 1859. Livingstone's mission established a base here, making it one of the first places in Malawi visited by Europeans.</p>
+        <p>The waters around Cape Maclear are home to hundreds of species of colorful cichlid fish, making it a snorkeling and diving paradise. The aquarium-like clarity of the water allows visitors to observe these unique fish in their natural habitat without even getting wet.</p>
+        <p>Beyond its natural beauty, Cape Maclear has a rich cultural history. The area has been inhabited by the Chewa people for centuries, and traditional fishing methods are still practiced today. The village offers visitors a glimpse into authentic Malawian life alongside tourist facilities.</p>
+        <p>Nearby islands, including Thumbi West Island and Domwe Island, provide excellent opportunities for kayaking, hiking, and camping. The area is also known for its spectacular sunsets, which paint the sky and lake in brilliant shades of orange and red.</p>
+        <p>Conservation efforts in the area focus on protecting the lake's unique biodiversity while supporting sustainable tourism that benefits local communities. These initiatives have helped maintain Cape Maclear's status as one of Malawi's premier tourist destinations.</p>
+        `
+  }
 }
+
