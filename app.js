@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
-const blogData = {
+const posts = {
   "Lake-Malawi": {
     title: "Exploring wonders of Lake Malawi",
     image: "images\\Lake-Malawi.jpg",
@@ -40,7 +40,7 @@ const blogData = {
   },
     "Mulanje-mountain": {
     title: "Mulanje Mountain",
-    image: "https://images.unsplash.com/photo-1459262833944-29e65ca2c86a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    image: "images\mount-mulanje.jpg",
     content: `
       <p>Mulanje Massif, also known as Mount Mulanje, is a large inselberg in southern Malawi that rises dramatically from the surrounding plains of Phalombe. At its highest point, Sapitwa Peak, it reaches 3,002 meters (9,849 feet), making it the highest mountain in Central Africa.</p>
       <p>The massif was formed about 130 million years ago from a granite upwelling. Over millennia, erosion has sculpted the mountain into its current form with dramatic peaks, deep valleys, and high plateaus. The mountain is known for its unique microclimate, with frequent cloud cover and higher rainfall than the surrounding areas.</p>
@@ -63,7 +63,7 @@ const blogData = {
   },
     "Liwonde-park": {
     title: "Liwonde National Park",
-    image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    image: "images\liwonde-park.jpg",
     content: `
         <p>Liwonde National Park, located in southern Malawi along the upper Shire River, is one of the country's premier wildlife destinations. Established in 1973, the park covers 548 square kilometers of diverse habitats including floodplains, woodlands, and lagoons.</p>
         <p>The park is best known for its large populations of elephants and hippos, which can often be seen along the riverbanks. Other wildlife includes crocodiles, antelope species such as kudu and waterbuck, and over 400 species of birds.</p>
