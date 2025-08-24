@@ -121,6 +121,14 @@ app.get('/posts/:id', (req, res) => {
 });
 
 //create
+app.get('/posts/new', (req, res) => {
+  res.render('create', {
+    title: 'Create a new blog post',
+    post: {}
+  });
+});
+
+
 
 app.get('/about', (req, res) => {
   res.render('pages/about');
