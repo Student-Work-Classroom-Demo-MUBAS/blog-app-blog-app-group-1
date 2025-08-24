@@ -549,4 +549,40 @@ footer {
     margin-bottom: 1.5rem;
     font-family: 'Playfair Display', serif;
 }
+.contact-methods 
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
 
+.contact-method 
+{
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--light-gray);
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+.contact-method:hover 
+{
+    transform: translateY(-5px);
+}
+
+.contact-method i 
+{
+    font-size: 2rem;
+    color: var(--primary-green);
+    margin-bottom: 1rem;
+}
+
+.contact-method h4 
+{
+    color: var(--dark-green);
+    margin-bottom: 0.5rem;
+}
+
+.contact-method p 
+{
+    color: #666;
+}
