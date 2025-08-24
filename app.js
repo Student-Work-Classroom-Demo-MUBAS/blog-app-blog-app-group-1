@@ -30,7 +30,7 @@ let posts = [
    {
     id: 1,
     title: "Exploring wonders of Lake Malawi",
-    image: "images\\Lake-Malawi.jpg",
+    image: "Lake-Malawi.jpg",
     content: `
       <p>Lake Malawi, also known as Lake Nyasa in Tanzania and Lago Niassa in Mozambique, is an African Great Lake located between Malawi, Mozambique, and Tanzania. It is the third largest lake in Africa and the ninth largest in the world.</p>
       <p>The lake is approximately 580 km long and 75 km wide at its widest point, with a total area of about 29,600 km². The lake is famous for being home to more species of fish than any other lake in the world, including at least 700 species of cichlids, with many still waiting to be discovered and described.</p>
@@ -43,7 +43,7 @@ let posts = [
     {
       id: 2,
     title: "Mulanje Mountain",
-    image: "images\mount-mulanje.jpg",
+    image: "imount-mulanje.jpg",
     content: `
       <p>Mulanje Massif, also known as Mount Mulanje, is a large inselberg in southern Malawi that rises dramatically from the surrounding plains of Phalombe. At its highest point, Sapitwa Peak, it reaches 3,002 meters (9,849 feet), making it the highest mountain in Central Africa.</p>
       <p>The massif was formed about 130 million years ago from a granite upwelling. Over millennia, erosion has sculpted the mountain into its current form with dramatic peaks, deep valleys, and high plateaus. The mountain is known for its unique microclimate, with frequent cloud cover and higher rainfall than the surrounding areas.</p>
@@ -55,7 +55,7 @@ let posts = [
     { 
       id: 3,
       title: "Nyika Plateau",
-      image: "images\nyika-plateau.jpg",
+      image: "nyika-plateau.jpg",
       content: `
       <p>Nyika Plateau is a beautiful, high-altitude plateau located in northern Malawi, with a small extension in northeastern Zambia. Most of the plateau lies within Nyika National Park, Malawi's largest national park, covering an area of about 3,200 km².</p>
       <p>The name "Nyika" means "where the water comes from" in the local language, an appropriate name as the plateau is the source of several important rivers. The landscape is characterized by rolling grasslands interspersed with patches of forest, dramatic escarpments, and occasional granite outcrops.</p>
@@ -70,7 +70,7 @@ let posts = [
   {
     id: 4,
     title: "Liwonde National Park",
-    image: "images\liwonde-park.jpg",
+    image: "liwonde-park.jpg",
     content: `
         <p>Liwonde National Park, located in southern Malawi along the upper Shire River, is one of the country's premier wildlife destinations. Established in 1973, the park covers 548 square kilometers of diverse habitats including floodplains, woodlands, and lagoons.</p>
         <p>The park is best known for its large populations of elephants and hippos, which can often be seen along the riverbanks. Other wildlife includes crocodiles, antelope species such as kudu and waterbuck, and over 400 species of birds.</p>
@@ -85,7 +85,7 @@ let posts = [
   {
     id: 5,
     title: "Zomba Plateau",
-    image: "images\zomba-mount.jpg",
+    image: "zomba-mount.jpg",
     content: `
         <p>Zomba Plateau is a striking granite massif that rises dramatically to about 1,800 meters (6,000 feet) above the city of Zomba, the former colonial capital of Malawi. The plateau covers an area of approximately 130 square kilometers and offers some of the most breathtaking views in the country.</p>
         <p>The plateau was formed about 130 million years ago during the breakup of Gondwana, the ancient supercontinent. Over millennia, erosion has sculpted the granite into its current form, with dramatic cliffs, rocky outcrops, and deep valleys.</p>
@@ -100,7 +100,7 @@ let posts = [
   {
     id: 6,
     title: "Cape Maclear",
-    image: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    image: "cape-maclear.jpg",
     content: `  
         <p>Cape Maclear, known locally as Chembe, is a picturesque fishing village located on the southern shore of Lake Malawi within the Lake Malawi National Park. This UNESCO World Heritage Site is renowned for its stunning beaches, crystal-clear waters, and incredible biodiversity.</p>
         <p>The cape was named after Sir Thomas Maclear, Astronomer Royal at the Cape of Good Hope and friend of David Livingstone, who visited the area in 1859. Livingstone's mission established a base here, making it one of the first places in Malawi visited by Europeans.</p>
@@ -112,6 +112,7 @@ let posts = [
     createdAt: new Date('2023-08-10'),
   }
 ];
+nextId = posts.length + 1;
 
 
 
