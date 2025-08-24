@@ -35,5 +35,17 @@ const blogData = {
       <p>Today, Mulanje is a popular destination for hiking and climbing, with several huts maintained by the Malawi Mountain Club providing accommodation for multiday treks. The challenging ascent to Sapitwa Peak offers breathtaking views of the surrounding landscape.</p>
     `
   },
+    "Nyika-plateau": {
+    title: "Nyika Plateau",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    content: `
+      <p>Nyika Plateau is a beautiful, high-altitude plateau located in northern Malawi, with a small extension in northeastern Zambia. Most of the plateau lies within Nyika National Park, Malawi's largest national park, covering an area of about 3,200 km².</p>
+      <p>The name "Nyika" means "where the water comes from" in the local language, an appropriate name as the plateau is the source of several important rivers. The landscape is characterized by rolling grasslands interspersed with patches of forest, dramatic escarpments, and occasional granite outcrops.</p>
+      <p>At elevations between 1,800 and 2,500 meters, Nyika has a cool climate unusual for Africa, with temperatures sometimes dropping below freezing in winter. This unique environment supports flora and fauna not found elsewhere in Malawi, including orchids, proteas, and over 400 species of birds.</p>
+      <p>Large mammals found on the plateau include eland, roan antelope, zebra, leopard, and elephant. The park is particularly known for its high density of leopards, though these elusive cats are rarely seen by visitors.</p>
+      <p>The plateau has a rich cultural history, with evidence of human occupation dating back to the Stone Age. During the colonial era, the area was set aside as a forest reserve before being declared a national park in 1965.</p>
+      <p>Today, visitors to Nyika can enjoy game drives, hiking, mountain biking, and horse riding safaris. The park's remote location and unique high-altitude ecosystem offer a wilderness experience unlike any other in Africa.</p>
+    `
+  },
 
 }
