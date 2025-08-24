@@ -231,3 +231,14 @@ main {
     align-items: center;
     gap: 8px;
 }
+
+.post-excerpt {
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+.post-actions {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
