@@ -382,3 +382,26 @@ main {
 .delete-form {
     display: inline;
 }
+
+/* Error Messages */
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    border: 1px solid #f5c6cb;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.error-section {
+    text-align: center;
+    padding: 3rem;
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
