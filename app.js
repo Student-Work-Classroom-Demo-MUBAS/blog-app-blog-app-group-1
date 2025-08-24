@@ -128,6 +128,29 @@ app.get('/posts/new', (req, res) => {
   });
 });
 
+//create new post
+app.get('/posts', (req, res) => {
+  const { title, image, content } = req.body;
+  const newPost = {
+    id: posts.length + 1,
+    title,
+    image:'default.jpg',
+    content,
+    createdAt: new Date()
+  };
+  posts.push(newPost);
+  res.redirect('/');
+});
+
+//validation
+if(!title || !image || !content) {
+  return res.status(400).render('create', {
+    title: 'Create a new blog post',
+    error: 'All fields are required',
+    post: { title, image, content }
+  });
+}
+
 
 
 app.get('/about', (req, res) => {
