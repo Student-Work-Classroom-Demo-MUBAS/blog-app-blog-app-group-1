@@ -112,7 +112,7 @@ let posts = [
 
 app.get('/', (req, res) => {
   res.render('index', {
-    post: posts.sort((a, b) => b.createdAt - a.createdAt),
+    posts: posts.sort((a, b) => b.createdAt - a.createdAt),
     title: 'Malawi Tourism Blog - Discover the Beauty of Malawi',
   });
 });
