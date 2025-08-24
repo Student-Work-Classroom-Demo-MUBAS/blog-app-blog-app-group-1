@@ -93,7 +93,7 @@ let posts = [
     `
   },
 
-   {
+  {
     id: 6,
     title: "Cape Maclear",
     image: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
