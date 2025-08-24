@@ -25,6 +25,14 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.1 });
 
+// Initial styles for animation
+animateElements.forEach(el => {
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+});
+
 // Enhance textares with auto-resize
 const textareas = document.querySelectorAll('textarea');
 textareas.forEach(textarea => {
