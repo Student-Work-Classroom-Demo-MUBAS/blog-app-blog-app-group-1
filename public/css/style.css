@@ -492,4 +492,18 @@ footer {
     .form-actions {
         flex-direction: column;
     }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .full-post,
+    .form-section {
+        padding: 1.5rem;
+    }
+
+    .post-actions {
+        flex-direction: column;
+    }
 }
