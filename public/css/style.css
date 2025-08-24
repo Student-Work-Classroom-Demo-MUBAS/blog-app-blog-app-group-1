@@ -415,3 +415,22 @@ main {
 .error-section p {
     margin-bottom: 2rem;
 }
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.empty-state h3 {
+    color: var(--dark-green);
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.empty-state p {
+    margin-bottom: 2rem;
+    color: #666;
+}
