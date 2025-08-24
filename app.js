@@ -24,5 +24,16 @@ const blogData = {
     
     `
   },
+    "Mulanje-mountain": {
+    title: "Mulanje Mountain",
+    image: "https://images.unsplash.com/photo-1459262833944-29e65ca2c86a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    content: `
+      <p>Mulanje Massif, also known as Mount Mulanje, is a large inselberg in southern Malawi that rises dramatically from the surrounding plains of Phalombe. At its highest point, Sapitwa Peak, it reaches 3,002 meters (9,849 feet), making it the highest mountain in Central Africa.</p>
+      <p>The massif was formed about 130 million years ago from a granite upwelling. Over millennia, erosion has sculpted the mountain into its current form with dramatic peaks, deep valleys, and high plateaus. The mountain is known for its unique microclimate, with frequent cloud cover and higher rainfall than the surrounding areas.</p>
+      <p>Mulanje is ecologically significant as it hosts numerous endemic species of plants and animals, including the Mulanje cedar (Widdringtonia whytei), Malawi's national tree. This slow-growing conifer is critically endangered due to illegal logging and fires.</p>
+      <p>The mountain holds cultural significance for the local people, featuring prominently in local folklore. One legend tells of a powerful spirit, Napolo, who resides on the mountain and causes thunderstorms and landslides when displeased.</p>
+      <p>Today, Mulanje is a popular destination for hiking and climbing, with several huts maintained by the Malawi Mountain Club providing accommodation for multiday treks. The challenging ascent to Sapitwa Peak offers breathtaking views of the surrounding landscape.</p>
+    `
+  },
 
 }
