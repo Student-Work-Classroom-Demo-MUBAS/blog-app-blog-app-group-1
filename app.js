@@ -3,19 +3,16 @@ const methodOverride = require('method-override');
 const app = express();
 const path = require('path');
 const fs = require('fs');
-const { title } = require('process');
-const { create } = require('domain');
-// const { title } = require('process');
 const port = process.env.PORT || 3000;
 
 // Set EJS as the view engine and set views directory
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-//Serve static files
+// Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Debug logging middleware
+// Debug logging middleware
 app.use((req, res, next) => {
   if (req.url.startsWith('/css') || req.url.startsWith('/js') || req.url.startsWith('/images')) {
     console.log('Static file request:', req.url, '-', res.statusCode);
@@ -27,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
 let posts = [
-   {
+  {
     id: 1,
     title: "Exploring wonders of Lake Malawi",
     image: "Lake-Malawi.jpg",
@@ -37,26 +34,27 @@ let posts = [
       <p>For the people of Malawi, the lake is a vital resource providing food, water transport, and tourism opportunities. The lake's clear waters and sandy beaches make it a popular destination for swimming, snorkeling, sailing, and kayaking.</p>
       <p>In 1984, the lake was designated a UNESCO World Heritage Site for its global importance in biodiversity conservation. The Lake Malawi National Park, located at the southern end of the lake, protects various aquatic habitats and hundreds of fish species found nowhere else on Earth.</p>
       <p>Local legend tells that the lake was discovered by the renowned Scottish explorer David Livingstone in 1859, though it had been known to local people for centuries before European arrival. The Yao people called it Nyasa, meaning simply "lake."</p>
-        `
+    `,
+    createdAt: new Date('2024-07-15')
   },
-
-    {
-      id: 2,
+  {
+    id: 2,
     title: "Mulanje Mountain",
-    image: "imount-mulanje.jpg",
+    image: "mount-mulanje.jpg",
     content: `
       <p>Mulanje Massif, also known as Mount Mulanje, is a large inselberg in southern Malawi that rises dramatically from the surrounding plains of Phalombe. At its highest point, Sapitwa Peak, it reaches 3,002 meters (9,849 feet), making it the highest mountain in Central Africa.</p>
       <p>The massif was formed about 130 million years ago from a granite upwelling. Over millennia, erosion has sculpted the mountain into its current form with dramatic peaks, deep valleys, and high plateaus. The mountain is known for its unique microclimate, with frequent cloud cover and higher rainfall than the surrounding areas.</p>
       <p>Mulanje is ecologically significant as it hosts numerous endemic species of plants and animals, including the Mulanje cedar (Widdringtonia whytei), Malawi's national tree. This slow-growing conifer is critically endangered due to illegal logging and fires.</p>
       <p>The mountain holds cultural significance for the local people, featuring prominently in local folklore. One legend tells of a powerful spirit, Napolo, who resides on the mountain and causes thunderstorms and landslides when displeased.</p>
       <p>Today, Mulanje is a popular destination for hiking and climbing, with several huts maintained by the Malawi Mountain Club providing accommodation for multiday treks. The challenging ascent to Sapitwa Peak offers breathtaking views of the surrounding landscape.</p>
-    `
+    `,
+    createdAt: new Date('2024-07-10')
   },
-    { 
-      id: 3,
-      title: "Nyika Plateau",
-      image: "nyika-plateau.jpg",
-      content: `
+  { 
+    id: 3,
+    title: "Nyika Plateau",
+    image: "nyika-plateau.jpg",
+    content: `
       <p>Nyika Plateau is a beautiful, high-altitude plateau located in northern Malawi, with a small extension in northeastern Zambia. Most of the plateau lies within Nyika National Park, Malawi's largest national park, covering an area of about 3,200 km².</p>
       <p>The name "Nyika" means "where the water comes from" in the local language, an appropriate name as the plateau is the source of several important rivers. The landscape is characterized by rolling grasslands interspersed with patches of forest, dramatic escarpments, and occasional granite outcrops.</p>
       <p>At elevations between 1,800 and 2,500 meters, Nyika has a cool climate unusual for Africa, with temperatures sometimes dropping below freezing in winter. This unique environment supports flora and fauna not found elsewhere in Malawi, including orchids, proteas, and over 400 species of birds.</p>
@@ -66,7 +64,6 @@ let posts = [
     `,
     createdAt: new Date('2023-10-01')
   },
-
   {
     id: 4,
     title: "Liwonde National Park",
@@ -79,9 +76,8 @@ let posts = [
         <p>Local communities have lived around the park for generations, and conservation efforts now include community outreach programs to ensure that local people benefit from tourism and conservation. These initiatives have helped reduce human-wildlife conflict and poaching.</p>
         <p>Today, visitors to Liwonde can enjoy game drives, boat safaris, and walking safaris, with accommodation options ranging from luxury lodges to basic campsites. The park's accessibility from Blantyre and its diverse wildlife make it one of Malawi's most popular tourist destinations.</p>
     `,
-    createdAt: new Date('2022-11-15'),
+    createdAt: new Date('2022-11-15')
   },
-
   {
     id: 5,
     title: "Zomba Plateau",
@@ -94,9 +90,8 @@ let posts = [
         <p>During the colonial era, Zomba was developed as a hill station where British officials could escape the heat of the lowlands. Remnants of this era include the former Governor's residence and various walking trails. The plateau also served as an important site for astronomical observations in the early 20th century.</p>
         <p>Today, Zomba Plateau is a popular destination for hiking, mountain biking, and horseback riding. Key attractions include Emperor's View, which offers panoramic vistas of Lake Chilwa and the Shire Highlands, and the Chagwa Falls. The plateau's cool climate and scenic beauty make it a refreshing retreat from Malawi's lowland heat.</p>
     `,
-    createdAt: new Date('2023-05-20'),
+    createdAt: new Date('2023-05-20')
   },
-
   {
     id: 6,
     title: "Cape Maclear",
@@ -108,93 +103,33 @@ let posts = [
         <p>Beyond its natural beauty, Cape Maclear has a rich cultural history. The area has been inhabited by the Chewa people for centuries, and traditional fishing methods are still practiced today. The village offers visitors a glimpse into authentic Malawian life alongside tourist facilities.</p>
         <p>Nearby islands, including Thumbi West Island and Domwe Island, provide excellent opportunities for kayaking, hiking, and camping. The area is also known for its spectacular sunsets, which paint the sky and lake in brilliant shades of orange and red.</p>
         <p>Conservation efforts in the area focus on protecting the lake's unique biodiversity while supporting sustainable tourism that benefits local communities. These initiatives have helped maintain Cape Maclear's status as one of Malawi's premier tourist destinations.</p>
-        `,
-    createdAt: new Date('2023-08-10'),
+    `,
+    createdAt: new Date('2023-08-10')
   }
 ];
-nextId = posts.length + 1;
+let nextId = posts.length + 1;
 
-
-
+// Routes
 app.get('/', (req, res) => {
   res.render('index', {
     posts: posts.sort((a, b) => b.createdAt - a.createdAt),
-    title: 'Malawi Tourism Blog - Discover the Beauty of Malawi',
+    title: 'Malawi Tourism Blog - Discover the Beauty of Malawi'
   });
 });
 
-//redirect 
+// Redirect 
 app.get('/create', (req, res) => {
   res.redirect('/posts/new');
 });
 
-//view single post
+// View single post
 app.get('/posts/:id', (req, res) => {
-  const post = posts.find (p => p.id ===parseInt(req.params.id));
+  const post = posts.find(p => p.id === parseInt(req.params.id));
   if (!post) {
-    return res.status(404).render('404 error', { 
+    return res.status(404).render('error', { 
       message: 'Post not found',
-      title: 'Post Not Found' });
-  }
-});
-
-//create
-app.get('/posts/new', (req, res) => {
-  res.render('create', {
-    title: 'Create a new blog post',
-    post: {}
-  });
-});
-
-//create new post
-app.get('/posts', (req, res) => {
-
-  //validation
-if(!title || !image || !content) {
-
-  const { title, image, content } = req.body;
-
-  return res.status(400).render('create', {
-    title: 'Create a new blog post',
-    error: 'All fields are required',
-    post: { title, image, content }
-  });
-}
-  
-  const newPost = {
-    id: posts.length + 1,
-    title,
-    image:'default.jpg',
-    content,
-    createdAt: new Date()
-  };
-  posts.push(newPost);
-  res.redirect('/');
-});
-
-
-
-//Edit post
-app.get('/posts/:id/edit', (req, res) => {
-  const post = posts.find (p => p.id ===parseInt(req.params.id));
-  if (!post) {
-    return res.status(404).render('404 error', { 
-      message: 'Post not found',
-      title: 'Post Not Found' });
-  }
-  res.render('edit', {
-    title: 'Edit blog post',
-    post
-  });
-});
-
-//View single blog page
-app.get('/posts/:id', (req, res) => {
-  const post = posts.find (p => p.id ===parseInt(req.params.id));
-  if (!post) {
-    return res.status(404).render('404 error', { 
-      message: 'Post not found',
-      title: 'Post Not Found' });
+      title: 'Post Not Found - Malawi Tourism Blog'
+    });
   }
   res.render('post', {
     title: `${post.title} - Malawi Tourism Blog`,
@@ -202,21 +137,70 @@ app.get('/posts/:id', (req, res) => {
   });
 });
 
-//Edit post
-app.put('/posts/:id', (req, res) => {
-  const{ title, image, content } = req.body;
-  const postIndex = posts.findIndex (p => p.id ===parseInt(req.params.id));
-  if (postIndex === -1) {
-    return res.status(404).render('404 error', { 
-      message: 'Post not found',
-      title: 'Post Not Found' });
+// Create new post form
+app.get('/posts/new', (req, res) => {
+  res.render('create', {
+    title: 'Create a new blog post - Malawi Tourism Blog',
+    post: {}
+  });
+});
+
+// Create new post (handle form submission)
+app.post('/posts', (req, res) => {
+  const { title, image, content } = req.body;
+
+  // Validation
+  if (!title || !content) {
+    return res.status(400).render('create', {
+      title: 'Create a new blog post - Malawi Tourism Blog',
+      error: 'Title and content are required',
+      post: { title, image, content }
+    });
   }
   
-//Validation
-  if(!title || !image || !content) {
+  const newPost = {
+    id: nextId++,
+    title,
+    image: image || 'default.jpg',
+    content,
+    createdAt: new Date()
+  };
+  posts.push(newPost);
+  res.redirect('/');
+});
+
+// Edit post form
+app.get('/posts/:id/edit', (req, res) => {
+  const post = posts.find(p => p.id === parseInt(req.params.id));
+  if (!post) {
+    return res.status(404).render('error', { 
+      message: 'Post not found',
+      title: 'Post Not Found - Malawi Tourism Blog'
+    });
+  }
+  res.render('edit', {
+    title: `Edit ${post.title} - Malawi Tourism Blog`,
+    post
+  });
+});
+
+// Update post (handle edit form submission)
+app.put('/posts/:id', (req, res) => {
+  const { title, image, content } = req.body;
+  const postIndex = posts.findIndex(p => p.id === parseInt(req.params.id));
+  
+  if (postIndex === -1) {
+    return res.status(404).render('error', { 
+      message: 'Post not found',
+      title: 'Post Not Found - Malawi Tourism Blog'
+    });
+  }
+  
+  // Validation
+  if (!title || !content) {
     return res.status(400).render('edit', {
-      title: 'Edit blog post',
-      error: 'All fields are required',
+      title: 'Edit blog post - Malawi Tourism Blog',
+      error: 'Title and content are required',
       post: { id: req.params.id, title, image, content }
     });
   }
@@ -224,71 +208,69 @@ app.put('/posts/:id', (req, res) => {
   posts[postIndex] = {
     ...posts[postIndex],
     title,
-    image,
+    image: image || posts[postIndex].image,
     content
   };
   res.redirect(`/posts/${req.params.id}`);
 });
 
-//Delete post
+// Delete post
 app.delete('/posts/:id', (req, res) => {
-  const postIndex = posts.findIndex (p => p.id ===parseInt(req.params.id));
+  const postIndex = posts.findIndex(p => p.id === parseInt(req.params.id));
+  
   if (postIndex === -1) {
-    return res.status(404).render('404 error', { 
+    return res.status(404).render('error', { 
       message: 'Post not found',
-      title: 'Post Not Found' });
+      title: 'Post Not Found - Malawi Tourism Blog'
+    });
   }
 
   posts.splice(postIndex, 1);
   res.redirect('/');
 });
 
-//Contact and about pages
-app.get('contact', (req, res) => {
-  res.render('pages/contact');
-  title: 'Contact Us - Malawi Tourism Blog'
+// Contact page
+app.get('/contact', (req, res) => {
+  res.render('contact', {
+    title: 'Contact Us - Malawi Tourism Blog'
+  });
 });
 
-//process and submit contact form
+// Process contact form submission
 app.post('/contact', (req, res) => {
   const { name, email, message } = req.body;
+  
   if (!name || !email || !message) {
-    return res.status(400).render('pages/contact', {
+    return res.status(400).render('contact', {
       title: 'Contact Us - Malawi Tourism Blog',
       error: 'All fields are required',
       formData: { name, email, message }
     });
   }
 
-//Showing success message
-  res.render('pages/contact', {
+  // Show success message
+  res.render('contact', {
     title: 'Contact Us - Malawi Tourism Blog',
-    success: 'Thank you for your message! We will get back to you soon.',
+    success: 'Thank you for your message! We will get back to you soon.'
   });
-
 });
- 
 
+// About page
 app.get('/about', (req, res) => {
-  res.render('pages/about');
+  res.render('about', {
+    title: 'About Us - Malawi Tourism Blog'
+  });
 });
 
-app.get('/contact', (req, res) => {
-  res.render('pages/contact');
+// Handle 404 errors
+app.use((req, res) => {
+  res.status(404).render('error', {
+    message: 'Page not found. The requested URL was not found on this server.',
+    title: 'Page Not Found - Malawi Tourism Blog'
+  });
 });
 
-
-// API endpont to get blog data
-app.get('api/blog', (req, res) => {
-  const blogId = req.params.id;
-  if (blogData[blogId]) {
-    res.json(blogData[blogId]);
-  } else {
-    res.status(404).json({ error: 'Blog post not found' });
-  }
-});
-
-//Start the server
+// Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
