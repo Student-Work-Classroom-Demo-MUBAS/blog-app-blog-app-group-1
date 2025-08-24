@@ -531,3 +531,22 @@ footer {
 .post-card:nth-child(3) {
     animation-delay: 0.2s;
 }
+
+/* contact form styling */
+/* Contact Page Styles */
+.contact-info 
+{
+    background-color: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+.contact-info h3 
+{
+    color: var(--dark-green);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+}
+
