@@ -1,0 +1,51 @@
+<%-include('partials/header') %>
+  <%- include('partials/navigation') %>
+
+  <div class="hero">
+    <h2>Welcome to Malawi</h2>
+    <h1>Welcome to Malawi Tourism Blog</h1>
+    <p>Discover the beauty, culture, and adventures of Malawi through our community-driven blog. Share your experiences, tips, and stories about the Warm Heart of Africa.</p>
+    <a href="/posts" class="btn primary"><i class="fas fa-blog"></i>View Blog Posts</a>
+    <a href="/posts/new" class="cta-button">Share your Experience<i class="fas fa-arrow-right"></i></a>
+
+  <% if (posts.length === 0) { %>
+    <div class="empty-state">
+      <h2>No posts yet</h2>
+      <p>Be the first to share your Malawi experience!</p>
+      <a href="/post/new" class="btn">Create a New Post</a>
+    </div>
+  <% } else { %>
+    <section>
+      <h2>Recent Posts</h2>
+      <% posts.forEach(post => { %>
+        <article class="post-card">
+          <div class="post-image">
+            <% if (post.imageUrl) { %>
+              <img src="<%= post.imageUrl %>" alt="<%= post.title %>">
+            <% } else { %>
+              <img src="/images/default-post.jpg" alt="Default Post Image">
+            <% } %>
+          </div>
+          <div class="post-content">
+            <h3><a href="/post/<%= post._id %>"><%= post.title %></a></h3>
+            <p class="post-meta"><i class="fas fa-calendar"></i><%= post.createdAt.toDateString() %></p>
+            <p class="post-excerpt">
+              <%= post.content.substring(0, 150) %>
+              <% if (post.content.length > 150) { %>...<% } %>
+            </p>
+              <div class="post-actions">
+                <a href="/post/<%= post._id %>" class="btn read-more">Read More</a>
+                <a href="/post/<%= post._id %>/edit" class="btn edit">Edit</a>
+                <form action="/post/<%= post._id %>?_method=DELETE" method="POST" class="inline-form">
+                  <button type="submit" class="btn delete" onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
+                </form>
+              </div>
+          </div>
+        </article>
+      <% }) %>
+    </section>
+  <%- include('partials/pagination', { currentPage, totalPages }) %>
+  <!-- <%- include('partials/sidebar') %> -->
+  <% } %>
+
+<%- include('partials/footer') %>

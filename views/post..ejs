@@ -1,0 +1,36 @@
+<%- include ('partials/header') %>
+  <%- include('partials/navigation') %>
+
+  <article class="full-post">
+    <h2><%= post.title %></h2>
+    <p class="post-meta"><i class="far fa calendar"></i><%= post.createdAt.toDateString() %></p>
+    
+    <div class="post-content">
+      <!-- check here for image -->
+      <img src="<%= post.imageUrl ? post.imageUrl : '/images/default.jpg' %>" alt="<%= post.title %>">
+      <p><%= post.content %></p>
+    </div>
+
+    <div class="post-image">
+      <% if (post.imageUrl) { %>  
+        <img src="<%= post.imageUrl %>" alt="<%= post.title %>">
+      <% } else { %>  
+        <img src="/images/default.jpg" alt="Default Post Image">
+      <% } %>
+    </div>
+
+    <div class="post-content">
+      <%= post.content.replace(/\n/g, '<br>') %><
+    </div>
+
+    <div class="post-actions">
+      <a href ="/" class = "btn secondary"><i class="fas fa-arrow-left"></i>Back to Home</a>
+      <a href="/post/<%= post._id %>/edit" class="btn primary"><i class="fas fa-edit"></i>Edit Post</a>
+      <form action="/post/<%= post._id %>?_method=DELETE" method="POST" class="delete-form">
+        <button type="submit" class="btn danger" onclick="return confirm('Are you sure you want to delete this post?')"><i class="fas fa-trash"></i>Delete Post</button>
+      </form>
+    </div>
+      <!-- <a href="/" class="btn back">Back to Home</a> -->
+  </article>
+
+<%- include('partials/footer') %>
