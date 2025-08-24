@@ -85,3 +85,29 @@ const blogData = {
   }
 }
 
+app.get('/', (req, res) => {
+  res.render('pages/index', {blogData});
+});
+
+app.get('/about', (req, res) => {
+  res.render('pages/about');
+});
+
+app.get('/contact', (req, res) => {
+  res.render('pages/contact');
+});
+
+// API endpont to get blog data
+app.get('api/blog', (req, res) => {
+  const blogId = req.params.id;
+  if (blogData[blogId]) {
+    res.json(blogData[blogId]);
+  } else {
+    res.status(404).json({ error: 'Blog post not found' });
+  }
+});
+
+//Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
