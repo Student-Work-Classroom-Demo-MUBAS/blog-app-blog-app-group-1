@@ -136,7 +136,7 @@ app.get('/posts', (req, res) => {
 if(!title || !image || !content) {
 
   const { title, image, content } = req.body;
-  
+
   return res.status(400).render('create', {
     title: 'Create a new blog post',
     error: 'All fields are required',
@@ -242,7 +242,6 @@ app.post('/contact', (req, res) => {
       formData: { name, email, message }
     });
   }
-});
 
 //Showing success message
   res.render('pages/contact', {
@@ -250,7 +249,8 @@ app.post('/contact', (req, res) => {
     success: 'Thank you for your message! We will get back to you soon.',
   });
 
-  
+});
+ 
 
 app.get('/about', (req, res) => {
   res.render('pages/about');
