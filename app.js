@@ -51,7 +51,7 @@ const posts = {
   },
     "Nyika-plateau": {
     title: "Nyika Plateau",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    image: "images\nyika-plateau.jpg",
     content: `
       <p>Nyika Plateau is a beautiful, high-altitude plateau located in northern Malawi, with a small extension in northeastern Zambia. Most of the plateau lies within Nyika National Park, Malawi's largest national park, covering an area of about 3,200 km².</p>
       <p>The name "Nyika" means "where the water comes from" in the local language, an appropriate name as the plateau is the source of several important rivers. The landscape is characterized by rolling grasslands interspersed with patches of forest, dramatic escarpments, and occasional granite outcrops.</p>
@@ -75,7 +75,7 @@ const posts = {
   },
     "Zomba-plateau": {
     title: "Zomba Plateau",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    image: "images\zomba-mount.jpg",
     content: `
         <p>Zomba Plateau is a striking granite massif that rises dramatically to about 1,800 meters (6,000 feet) above the city of Zomba, the former colonial capital of Malawi. The plateau covers an area of approximately 130 square kilometers and offers some of the most breathtaking views in the country.</p>
         <p>The plateau was formed about 130 million years ago during the breakup of Gondwana, the ancient supercontinent. Over millennia, erosion has sculpted the granite into its current form, with dramatic cliffs, rocky outcrops, and deep valleys.</p>
@@ -131,7 +131,19 @@ app.get('/posts/new', (req, res) => {
 
 //create new post
 app.get('/posts', (req, res) => {
+
+  //validation
+if(!title || !image || !content) {
+
   const { title, image, content } = req.body;
+  
+  return res.status(400).render('create', {
+    title: 'Create a new blog post',
+    error: 'All fields are required',
+    post: { title, image, content }
+  });
+}
+  
   const newPost = {
     id: posts.length + 1,
     title,
@@ -143,14 +155,7 @@ app.get('/posts', (req, res) => {
   res.redirect('/');
 });
 
-//validation
-if(!title || !image || !content) {
-  return res.status(400).render('create', {
-    title: 'Create a new blog post',
-    error: 'All fields are required',
-    post: { title, image, content }
-  });
-}
+
 
 //Edit post
 app.get('/posts/:id/edit', (req, res) => {
