@@ -54,8 +54,19 @@ header {
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 2px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+    border: 2px solid var(--gold);
+    background-color: var(--white);
 }
+
+/*.logo-thumbnail {
+
+}*/
 
 .logo-icon {
     font-size: 2rem;
