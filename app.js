@@ -3,6 +3,7 @@ const methodOverride = require('method-override');
 const app = express();
 const path = require('path');
 const fs = require('fs');
+const multer = require('multer');
 const port = process.env.PORT || 3000;
 
 // Set EJS as the view engine and set views directory
@@ -14,7 +15,35 @@ app.use((req, res, next)=> {
   next();
 });
 
-// Debug: Check if post.ejs exists
+
+// Configure multer for file uploads
+// Configure multer for file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, 'public/images/uploads'));
+  },
+  filename: function (req, file, cb) {
+    // Create a unique filename with timestamp
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, 'blog-' + uniqueSuffix + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({ 
+  storage: storage,
+  limits: {
+    fileSize: 5 * 1024 * 1024, // 5MB limit
+  },
+  fileFilter: function (req, file, cb) {
+    // Accept images only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+      return cb(new Error('Only image files are allowed!'), false);
+    }
+    cb(null, true);
+  }
+});
+
+/* Debug: Check if post.ejs exists
 console.log('Views directory path:', path.join(__dirname, 'views'));
 const viewsPath = path.join(__dirname, 'views');
 const postViewPath = path.join(viewsPath, 'post.ejs');
@@ -26,7 +55,10 @@ if (fs.existsSync(postViewPath)) {
   fs.readdirSync(viewsPath).forEach(file => {
     console.log(' -', file);
   });
-}
+}*/
+
+
+
 
 
 // Serve static files
@@ -230,7 +262,7 @@ app.get('/posts/new', (req, res) => {
   });
 });
 
-// View single post
+/* View single post
 app.get('/posts/:id', (req, res) => {
   const post = posts.find(p => p.id === parseInt(req.params.id));
   if (!post) {
@@ -243,7 +275,9 @@ app.get('/posts/:id', (req, res) => {
     title: `${post.title} - Malawi Tourism Blog`,
     post
   });
-});
+});*/
+
+
 
 
 // Create new post (handle form submission)
@@ -271,6 +305,34 @@ app.post('/posts', (req, res) => {
     res.redirect(`/posts/${newPost.id}`);
   }, 1000); // 1 second delay
   
+});
+
+app.post('/posts', upload.single('image'), (req, res) => {
+  const { title, content } = req.body;
+  let image = 'default.jpg'; // Default image
+
+  // If a file was uploaded, use its filename
+  if (req.file) {
+    image = 'uploads/' + req.file.filename;
+  }
+
+  // Validation
+  if (!title || !content) {
+    return res.status(400).render('create', {
+      title: 'Create a new blog post - Malawi Tourism Blog',
+      error: 'Title and content are required',
+      post: { title, content }
+    });
+  }
+    const newPost = {
+    id: nextId++,
+    title,
+    image: image,
+    content,
+    createdAt: new Date()
+  };
+  posts.push(newPost);
+  res.redirect(`/posts/${newPost.id}`);
 });
 
 // Edit post form
@@ -313,6 +375,89 @@ app.put('/posts/:id', (req, res) => {
     ...posts[postIndex],
     title,
     image: image || posts[postIndex].image,
+    content
+  };
+  res.redirect(`/posts/${req.params.id}`);
+});
+
+
+app.put('/posts/:id', upload.single('image'), (req, res) => {
+  const { title, content, removeImage } = req.body;
+  const postIndex = posts.findIndex(p => p.id === parseInt(req.params.id));
+  
+  if (postIndex === -1) {
+    return res.status(404).render('error', { 
+      message: 'Post not found',
+      title: 'Post Not Found - Malawi Tourism Blog'
+    });
+  }
+  
+  // Validation
+  if (!title || !content) {
+    return res.status(400).render('edit', {
+      title: 'Edit blog post - Malawi Tourism Blog',
+      error: 'Title and content are required',
+      post: { id: req.params.id, title, content }
+    });
+  }
+
+  let image = posts[postIndex].image;
+  
+  // Handle image removal
+  if (removeImage === 'true') {
+    image = 'default.jpg';
+  }
+  
+  // If a new file was uploaded, use its filename
+  if (req.file) {
+    image = 'uploads/' + req.file.filename;
+  }
+
+  posts[postIndex] = {
+    ...posts[postIndex],
+    title,
+    image,
+    content
+  };
+  res.redirect(`/posts/${req.params.id}`);
+});
+
+app.put('/posts/:id', upload.single('image'), (req, res) => {
+  const { title, content, removeImage } = req.body;
+  const postIndex = posts.findIndex(p => p.id === parseInt(req.params.id));
+  
+  if (postIndex === -1) {
+    return res.status(404).render('error', { 
+      message: 'Post not found',
+      title: 'Post Not Found - Malawi Tourism Blog'
+    });
+  }
+  
+  // Validation
+  if (!title || !content) {
+    return res.status(400).render('edit', {
+      title: 'Edit blog post - Malawi Tourism Blog',
+      error: 'Title and content are required',
+      post: { id: req.params.id, title, content }
+    });
+  }
+
+  let image = posts[postIndex].image;
+  
+  // Handle image removal
+  if (removeImage === 'true') {
+    image = 'default.jpg';
+  }
+  
+  // If a new file was uploaded, use its filename
+  if (req.file) {
+    image = 'uploads/' + req.file.filename;
+  }
+
+  posts[postIndex] = {
+    ...posts[postIndex],
+    title,
+    image,
     content
   };
   res.redirect(`/posts/${req.params.id}`);
@@ -366,6 +511,26 @@ app.use((req, res) => {
     message: 'Page not found. The requested URL was not found on this server.',
     title: 'Page Not Found - Malawi Tourism Blog'
   });
+});
+
+//Error handling for file uploads
+app.use((error, req, res, next) => {
+  if(error instanceof multer.MulterError) {
+    if(error.code === 'LIMIT_FILE_SIZE') {
+      return res.status(400).render('create', {
+        title: 'Create a new blog post - Malawi Tourism Blog',
+        error: 'File size exceeds the 2MB limit.',
+        post: { title: req.body.title, content: req.body.content }
+      });
+    }
+}else if(error) {
+  return res.status(400).render('create', {
+    title: 'Create a new blog post - Malawi Tourism Blog',
+    error: error.message,
+    post: { title: req.body.title, content: req.body.content }
+  });
+}
+next();
 });
 
 // Start the server
