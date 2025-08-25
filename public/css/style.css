@@ -56,6 +56,13 @@ header
     padding: 10px 0;
 }
 /* Logo Styles */
+.logo-container 
+{
+    display: flex;
+    align-items: center;   
+    gap: 15px;             
+}
+
 .logo-image 
 {
     width: 50px;
