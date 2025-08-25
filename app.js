@@ -10,17 +10,15 @@ const port = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.use((req, res, next)=> {
-  console.log('Request URL:', req.url);
-  next();
-});
-
-
-// Configure multer for file uploads
 // Configure multer for file uploads
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, 'public/images/uploads'));
+    // Create the directory if it doesn't exist
+    const uploadPath = path.join(__dirname, 'public/images/uploads');
+    if (!fs.existsSync(uploadPath)) {
+      fs.mkdirSync(uploadPath, { recursive: true });
+    }
+    cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
     // Create a unique filename with timestamp
@@ -43,37 +41,15 @@ const upload = multer({
   }
 });
 
-/* Debug: Check if post.ejs exists
-console.log('Views directory path:', path.join(__dirname, 'views'));
-const viewsPath = path.join(__dirname, 'views');
-const postViewPath = path.join(viewsPath, 'post.ejs');
-if (fs.existsSync(postViewPath)) {
-  console.log('post.ejs found at:', postViewPath);
-} else {
-  console.log('post.ejs NOT found at:', postViewPath);
-  console.log('Available files in views directory:');
-  fs.readdirSync(viewsPath).forEach(file => {
-    console.log(' -', file);
-  });
-}*/
-
-
-
-
-
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Debug logging middleware
-app.use((req, res, next) => {
-  if (req.url.startsWith('/css') || req.url.startsWith('/js') || req.url.startsWith('/images')) {
-    console.log('Static file request:', req.url, '-', res.statusCode);
-  } 
-  next();
-});
-
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+
+/*let posts = [
+  // Your posts array here (unchanged)
+];*/
 
 let posts = [
   {
@@ -257,12 +233,12 @@ app.get('/about', (req, res) => {
 // Create new post form
 app.get('/posts/new', (req, res) => {
   res.render('create', {
-    title: '',
+    title: 'Create New Post - Malawi Tourism Blog',
     post: {}
   });
 });
 
-/* View single post
+// View single post
 app.get('/posts/:id', (req, res) => {
   const post = posts.find(p => p.id === parseInt(req.params.id));
   if (!post) {
@@ -275,38 +251,9 @@ app.get('/posts/:id', (req, res) => {
     title: `${post.title} - Malawi Tourism Blog`,
     post
   });
-});*/
-
-
-
-
-// Create new post (handle form submission)
-app.post('/posts', (req, res) => {
-  const { title, image, content } = req.body;
-
-  // Validation
-  if (!title || !content) {
-    return res.status(400).render('create', {
-      title: '',
-      error: 'Title and content are required',
-      post: { title, image, content }
-    });
-  }
-  
-  const newPost = {
-    id: nextId++,
-    title,
-    image: image || 'default.jpg',
-    content,
-    createdAt: new Date()
-  };
-  posts.push(newPost);
-  setTimeout(() => {
-    res.redirect(`/posts/${newPost.id}`);
-  }, 1000); // 1 second delay
-  
 });
 
+// Create new post (handle form submission)
 app.post('/posts', upload.single('image'), (req, res) => {
   const { title, content } = req.body;
   let image = 'default.jpg'; // Default image
@@ -324,7 +271,8 @@ app.post('/posts', upload.single('image'), (req, res) => {
       post: { title, content }
     });
   }
-    const newPost = {
+  
+  const newPost = {
     id: nextId++,
     title,
     image: image,
@@ -351,77 +299,6 @@ app.get('/posts/:id/edit', (req, res) => {
 });
 
 // Update post (handle edit form submission)
-app.put('/posts/:id', (req, res) => {
-  const { title, image, content } = req.body;
-  const postIndex = posts.findIndex(p => p.id === parseInt(req.params.id));
-  
-  if (postIndex === -1) {
-    return res.status(404).render('error', { 
-      message: 'Post not found',
-      title: 'Post Not Found - Malawi Tourism Blog'
-    });
-  }
-  
-  // Validation
-  if (!title || !content) {
-    return res.status(400).render('edit', {
-      title: 'Edit blog post - Malawi Tourism Blog',
-      error: 'Title and content are required',
-      post: { id: req.params.id, title, image, content }
-    });
-  }
-
-  posts[postIndex] = {
-    ...posts[postIndex],
-    title,
-    image: image || posts[postIndex].image,
-    content
-  };
-  res.redirect(`/posts/${req.params.id}`);
-});
-
-
-app.put('/posts/:id', upload.single('image'), (req, res) => {
-  const { title, content, removeImage } = req.body;
-  const postIndex = posts.findIndex(p => p.id === parseInt(req.params.id));
-  
-  if (postIndex === -1) {
-    return res.status(404).render('error', { 
-      message: 'Post not found',
-      title: 'Post Not Found - Malawi Tourism Blog'
-    });
-  }
-  
-  // Validation
-  if (!title || !content) {
-    return res.status(400).render('edit', {
-      title: 'Edit blog post - Malawi Tourism Blog',
-      error: 'Title and content are required',
-      post: { id: req.params.id, title, content }
-    });
-  }
-
-  let image = posts[postIndex].image;
-  
-  // Handle image removal
-  if (removeImage === 'true') {
-    image = 'default.jpg';
-  }
-  
-  // If a new file was uploaded, use its filename
-  if (req.file) {
-    image = 'uploads/' + req.file.filename;
-  }
-
-  posts[postIndex] = {
-    ...posts[postIndex],
-    title,
-    image,
-    content
-  };
-  res.redirect(`/posts/${req.params.id}`);
-});
-
 app.put('/posts/:id', upload.single('image'), (req, res) => {
   const { title, content, removeImage } = req.body;
   const postIndex = posts.findIndex(p => p.id === parseInt(req.params.id));
@@ -504,6 +381,25 @@ app.post('/contact', (req, res) => {
   });
 });
 
+// Error handling for file uploads
+app.use((error, req, res, next) => {
+  if (error instanceof multer.MulterError) {
+    if (error.code === 'LIMIT_FILE_SIZE') {
+      return res.status(400).render('create', {
+        title: 'Create a new blog post - Malawi Tourism Blog',
+        error: 'File size exceeds the 5MB limit.',
+        post: { title: req.body.title, content: req.body.content }
+      });
+    }
+  } else if (error) {
+    return res.status(400).render('create', {
+      title: 'Create a new blog post - Malawi Tourism Blog',
+      error: error.message,
+      post: { title: req.body.title, content: req.body.content }
+    });
+  }
+  next();
+});
 
 // Handle 404 errors
 app.use((req, res) => {
@@ -511,26 +407,6 @@ app.use((req, res) => {
     message: 'Page not found. The requested URL was not found on this server.',
     title: 'Page Not Found - Malawi Tourism Blog'
   });
-});
-
-//Error handling for file uploads
-app.use((error, req, res, next) => {
-  if(error instanceof multer.MulterError) {
-    if(error.code === 'LIMIT_FILE_SIZE') {
-      return res.status(400).render('create', {
-        title: 'Create a new blog post - Malawi Tourism Blog',
-        error: 'File size exceeds the 2MB limit.',
-        post: { title: req.body.title, content: req.body.content }
-      });
-    }
-}else if(error) {
-  return res.status(400).render('create', {
-    title: 'Create a new blog post - Malawi Tourism Blog',
-    error: error.message,
-    post: { title: req.body.title, content: req.body.content }
-  });
-}
-next();
 });
 
 // Start the server
