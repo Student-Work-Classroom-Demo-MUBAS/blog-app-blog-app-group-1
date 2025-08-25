@@ -398,7 +398,7 @@ main {
 }
 
 .btn.danger:hover {
-    background-color: #c82333;
+    background-color: #530910;
 }
 
 .delete-form {
@@ -700,3 +700,28 @@ header {
         font-size: 0.9rem;
     }
 }
+
+/* --- About Section --- */
+.about 
+{
+    text-align: center;
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    line-height: 1.7;
+}
+
+.about h1 {
+text-align: center;
+font-size: 2.2rem;
+margin-bottom: 20px;
+color: var(--dark-green);
+text-align: center;
+border-bottom: 2px solid var(--primary-brown); 
+display: inline-block;
+padding-bottom: 5px;
+}
+
