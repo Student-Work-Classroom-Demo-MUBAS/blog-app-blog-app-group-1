@@ -11,6 +11,26 @@
       </div>
     <% } %>
     
+    <!-- Image upload field with preview and remove option -->
+<form action="/posts/<%= post.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+  <!-- ... other fields ... -->
+  <div class="form-group">
+    <label for="image">Blog Image:</label>
+    <% if (post.image && post.image !== 'default.jpg') { %>
+      <div>
+        <img src="/images/<%= post.image %>" alt="Current image" style="max-width: 200px; margin-bottom: 10px;">
+        <br>
+        <label>
+          <input type="checkbox" name="removeImage" value="true"> Remove current image
+        </label>
+      </div>
+    <% } %>
+    <input type="file" id="image" name="image" accept="image/*">
+    <small>Select a new image for your blog post (JPG, PNG, or GIF, max 5MB)</small>
+  </div>
+
+</form>
+
     <form action="/posts/<%= post.id %>?_method=PUT" method="POST" class="post-form">
       <div class="form-group">
         <label for="title">Title:</label>
