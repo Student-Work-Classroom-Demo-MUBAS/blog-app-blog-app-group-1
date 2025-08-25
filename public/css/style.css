@@ -37,7 +37,7 @@ body {
 header {
     background: linear-gradient(to right, var(--dark-green), var(--primary-green));
     color: var(--white);
-    padding: 5px 0;
+    padding: auto;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -63,18 +63,21 @@ header {
 }
 
 .logo h1 {
+    justify-content: center;
     font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
     margin: 0;
 }
 
 .logo p {
+    justify-content: center;
     font-size: 0.9rem;
     opacity: 0.9;
 }
 
 /* Navigation */
 nav ul {
+    justify-content: center;
     display: flex;
     list-style: none;
     gap: 1.5rem;
@@ -228,7 +231,7 @@ main {
     font-size: 0.9rem;
     margin-bottom: 1rem;
     display: flex;
-    align-items: center;
+    align-items: justify;
     gap: 8px;
 }
 
@@ -445,6 +448,7 @@ footer {
 }
 
 .footer-content {
+    justify-content: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -452,6 +456,7 @@ footer {
 }
 
 .social-links {
+    justify-content: center;
     display: flex;
     gap: 1.2rem;
 }
