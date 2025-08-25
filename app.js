@@ -9,6 +9,26 @@ const port = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+app.use((req, res, next)=> {
+  console.log('Request URL:', req.url);
+  next();
+});
+
+// Debug: Check if post.ejs exists
+console.log('Views directory path:', path.join(__dirname, 'views'));
+const viewsPath = path.join(__dirname, 'views');
+const postViewPath = path.join(viewsPath, 'post.ejs');
+if (fs.existsSync(postViewPath)) {
+  console.log('post.ejs found at:', postViewPath);
+} else {
+  console.log('post.ejs NOT found at:', postViewPath);
+  console.log('Available files in views directory:');
+  fs.readdirSync(viewsPath).forEach(file => {
+    console.log(' -', file);
+  });
+}
+
+
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -195,6 +215,21 @@ app.get('/create', (req, res) => {
   res.redirect('/posts/new');
 });
 
+// About page
+app.get('/about', (req, res) => {
+  res.render('about', {
+    title: 'About Us - Malawi Tourism Blog'
+  });
+});
+
+// Create new post form
+app.get('/posts/new', (req, res) => {
+  res.render('create', {
+    title: '',
+    post: {}
+  });
+});
+
 // View single post
 app.get('/posts/:id', (req, res) => {
   const post = posts.find(p => p.id === parseInt(req.params.id));
@@ -210,13 +245,6 @@ app.get('/posts/:id', (req, res) => {
   });
 });
 
-// Create new post form
-app.get('/posts/new', (req, res) => {
-  res.render('create', {
-    title: 'Create a new blog post - Malawi Tourism Blog',
-    post: {}
-  });
-});
 
 // Create new post (handle form submission)
 app.post('/posts', (req, res) => {
@@ -225,7 +253,7 @@ app.post('/posts', (req, res) => {
   // Validation
   if (!title || !content) {
     return res.status(400).render('create', {
-      title: 'Create a new blog post - Malawi Tourism Blog',
+      title: '',
       error: 'Title and content are required',
       post: { title, image, content }
     });
@@ -239,7 +267,10 @@ app.post('/posts', (req, res) => {
     createdAt: new Date()
   };
   posts.push(newPost);
-  res.redirect('/');
+  setTimeout(() => {
+    res.redirect(`/posts/${newPost.id}`);
+  }, 1000); // 1 second delay
+  
 });
 
 // Edit post form
@@ -328,12 +359,6 @@ app.post('/contact', (req, res) => {
   });
 });
 
-// About page
-app.get('/about', (req, res) => {
-  res.render('about', {
-    title: 'About Us - Malawi Tourism Blog'
-  });
-});
 
 // Handle 404 errors
 app.use((req, res) => {

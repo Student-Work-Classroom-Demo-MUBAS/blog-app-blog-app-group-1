@@ -37,6 +37,7 @@ body {
 header {
     background: linear-gradient(to right, var(--dark-green), var(--primary-green));
     color: var(--white);
+    justify-content: center;
     padding: auto;
     position: sticky;
     top: 0;
@@ -52,11 +53,12 @@ header {
 }
 
 .logo {
+    justify-content: center;
     display: flex;
     align-items: center;
     gap: 2px;
     width: 40px;
-    height: 40px;
+    height: 40pxz;
     border-radius: 50%;
     overflow: hidden;
     object-fit: cover;
