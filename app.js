@@ -286,16 +286,17 @@ app.post('/posts', upload.single('image'), (req, res) => {
 // Edit post form
 app.get('/posts/:id/edit', (req, res) => {
   const post = posts.find(p => p.id === parseInt(req.params.id));
+    res.render('edit', {
+    title: `Edit ${post.title} - Malawi Tourism Blog`,
+    post
+  });
+  
   if (!post) {
     return res.status(404).render('error', { 
       message: 'Post not found',
       title: 'Post Not Found - Malawi Tourism Blog'
     });
   }
-  res.render('edit', {
-    title: `Edit ${post.title} - Malawi Tourism Blog`,
-    post
-  });
 });
 
 // Update post (handle edit form submission)
